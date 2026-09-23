@@ -1,5 +1,5 @@
 
-const API_BASE = localStorage.getItem("JT3D_API_BASE") || "http://localhost:8000";
+const API_BASE = localStorage.getItem("JT3D_API_BASE") || "http://jt3d-aii.onrender.com";
 
 const form = document.querySelector("#generatorForm");
 const fileInput = document.querySelector("#images");
