@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JT3D AI — Gerador de Projetos 3D</title>
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.169.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.169.0/examples/jsm/"}}</script>
+</head>
+<body>
+<header><div class="brand"><img src="assets/jt3d-logo.jpg"><div><b>JT3D AI</b><small>GERADOR DE PROJETOS 3D</small></div></div><nav><a href="#gerar">Gerar</a><a href="#como">Como funciona</a><a href="#projetos">Meus projetos</a></nav><button class="outline">Entrar</button></header>
+<main>
+<section class="hero"><div class="hero-copy"><span class="pill">IA + IMPRESSÃO 3D</span><h1>Transforme suas fotos em <em>modelos 3D</em></h1><p>Envie fotos, escolha o estilo e gere um modelo preparado para impressão. Nesta versão, o projeto já está conectado a um backend para receber o processamento de IA.</p><a class="cta" href="#gerar">Começar agora →</a><div class="mini"><span>✓ STL</span><span>✓ 3MF</span><span>✓ Visualizador 3D</span></div></div><div class="hero-art"><div class="glow"></div><div class="cube">3D</div><strong>Sua ideia<br><i>ganha forma!</i></strong></div></section>
+<section id="gerar" class="panel"><div class="section-title"><span>01</span><div><h2>Gerar novo projeto</h2><p>Envie de 1 a 8 fotos do objeto ou pessoa.</p></div></div>
+<div class="generator-grid"><div><label class="drop" id="drop"><input id="photos" type="file" accept="image/*" multiple><div class="upload-icon">↑</div><b>Arraste as fotos aqui</b><small>ou clique para selecionar</small><small>PNG, JPG ou WEBP · até 8 imagens</small></label><div id="thumbs" class="thumbs"></div></div>
+<div class="form"><label>Estilo<select id="style"><option value="realista">Realista</option><option value="action">Action Figure</option><option value="funko">Funko Pop</option><option value="busto">Busto</option><option value="miniatura">Miniatura</option><option value="mascote">Mascote</option></select></label><label>Formato de saída<select id="format"><option value="stl">STL</option><option value="3mf">3MF</option><option value="both">STL + 3MF</option></select></label><label>Instruções para a IA<textarea id="prompt" placeholder="Ex.: manter a fisionomia, retirar a base e deixar pronto para impressão 3D..."></textarea></label><button id="generate" class="cta full">Gerar modelo 3D com IA</button><div id="status" class="status"></div></div></div></section>
+<section id="viewer" class="panel hidden"><div class="section-title"><span>02</span><div><h2>Visualizar e revisar</h2><p>Gire o modelo, aproxime e prepare o arquivo.</p></div></div><div class="viewer-grid"><div id="canvas3d" class="canvas3d"><div class="viewer-help">Arraste para girar · scroll para zoom</div></div><div class="review"><h3>Configurações</h3><label>Escala <input id="scale" type="range" min="50" max="150" value="100"><output id="scaleOut">100%</output></label><label><input type="checkbox" id="base"> Adicionar base JT3D</label><label><input type="checkbox" id="supports" checked> Preparar suportes</label><div class="downloads"><a id="downloadStl" class="download disabled">Baixar STL</a><a id="download3mf" class="download disabled">Baixar 3MF</a></div></div></div></section>
+<section id="como" class="steps"><div class="section-title"><span>03</span><div><h2>Como funciona?</h2></div></div><div class="step-grid"><article><b>1</b><h3>Envie fotos</h3><p>Use fotos de vários ângulos para melhorar a reconstrução.</p></article><article><b>2</b><h3>IA cria o 3D</h3><p>O backend envia as imagens ao motor de geração configurado.</p></article><article><b>3</b><h3>Revise</h3><p>Visualize, ajuste escala e escolha a preparação.</p></article><article><b>4</b><h3>Baixe</h3><p>Receba STL/3MF quando o processamento terminar.</p></article></div></section>
+<section id="projetos" class="projects panel"><h2>Meus projetos</h2><p>Projetos serão salvos aqui quando você conectar login e banco de dados.</p><div class="empty">Nenhum projeto salvo ainda.</div></section>
+
+<section class="generator" id="gerador">
+  <div class="card">
+    <h2>Gerar meu projeto 3D</h2>
+    <form id="generatorForm">
+      <label>Fotos (1 a 4)
+        <input id="images" name="images" type="file" accept="image/png,image/jpeg,image/webp" multiple required>
+      </label>
+      <label>Estilo
+        <select id="style">
+          <option value="realista">Realista</option>
+          <option value="action-figure">Action Figure</option>
+          <option value="funko">Funko</option>
+          <option value="busto">Busto</option>
+          <option value="miniatura">Miniatura</option>
+          <option value="mascote">Mascote</option>
+        </select>
+      </label>
+      <label>Instruções
+        <textarea id="instructions" placeholder="Ex.: manter a fisionomia, retirar a base, preparar para impressão 3D"></textarea>
+      </label>
+      <button class="btn" type="submit">🚀 Gerar modelo 3D</button>
+    </form>
+    <div id="status" hidden></div>
+    <progress id="progressBar" max="100" value="0"></progress>
+    <div id="result" hidden></div>
+  </div>
+</section>
+</main><footer><img src="assets/jt3d-logo.jpg"><span>JT3D Impressão 3D · Sua ideia ganha forma.</span></footer>
+<script type="module" src="app.js"></script>
+</body></html>
